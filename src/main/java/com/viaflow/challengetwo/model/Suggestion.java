@@ -17,12 +17,12 @@ public class Suggestion {
 
     private String name;
     private String storeName;
-    private String description;
+    private String suggestion;
 
-    public Suggestion(String name, String storeName, String description) {
+    public Suggestion(String name, String storeName, String suggestion) {
         this.name = name;
         this.storeName = storeName;
-        this.description = description;
+        this.suggestion = suggestion;
     }
 
     public Long getId() {
@@ -39,8 +39,8 @@ public class Suggestion {
         return storeName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSuggestion() {
+        return suggestion;
     }
 
 }

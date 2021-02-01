@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.viaflow.challengetwo.controller.form.IncreaseProductRatingForm;
 import com.viaflow.challengetwo.dto.ProductDto;
 import com.viaflow.challengetwo.model.Product;
 import com.viaflow.challengetwo.repository.ProductRepository;
@@ -24,13 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/produtos")
 public class ProductController {
     
-
-
-    //they dont create nothinnnnn'
-    //put method of product
-    // post suggestion method 
-    // authorization
-
     @Autowired
     private ProductRepository productRepository;
 
@@ -45,13 +37,13 @@ public class ProductController {
     
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<ProductDto> increaseRating(@PathVariable Long id, 
-    @RequestBody @Valid IncreaseProductRatingForm increasedRatingProduct){
+    public ResponseEntity<ProductDto> increaseRating(@PathVariable Long id){
         Optional<Product> optional = productRepository.findById(id);
        
         if(optional.isPresent()){
+        	Product product = optional.get();
         	
-            Product product = increasedRatingProduct.addRating(id, productRepository);
+        	product.setRating(product.getRating() + 1);
             return ResponseEntity.ok(new ProductDto(product));
         } 
         

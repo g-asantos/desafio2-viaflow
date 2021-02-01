@@ -1,19 +1,27 @@
 package com.viaflow.challengetwo.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 import com.viaflow.challengetwo.model.Suggestion;
 
 public class SuggestionDto {
-
+	
+	@NotEmpty @NotBlank
     private String name;
+	
+	@NotEmpty @NotBlank
     private String storeName;
-    private String description;
+	
+	@NotEmpty @NotBlank
+    private String suggestion;
     
     
     
 	public SuggestionDto(Suggestion suggestion) {
 		this.name = suggestion.getName();
 		this.storeName = suggestion.getStoreName();
-		this.description = suggestion.getDescription();
+		this.suggestion = suggestion.getSuggestion();
 	}
 
 
@@ -37,8 +45,8 @@ public class SuggestionDto {
 
 
 
-	public String getDescription() {
-		return description;
+	public String getSuggestion() {
+		return suggestion;
 	}
     
     

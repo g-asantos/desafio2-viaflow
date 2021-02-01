@@ -30,7 +30,7 @@ public class SuggestionController {
 	@Transactional
 	public ResponseEntity<SuggestionDto> register(@RequestBody @Valid SuggestionDto suggestionDto, UriComponentsBuilder uriBuilder) {
 		Suggestion suggestion = new Suggestion(suggestionDto.getName(), suggestionDto.getStoreName(), 
-		suggestionDto.getDescription());
+		suggestionDto.getSuggestion());
 		
 		suggestionRepository.save(suggestion);
 
