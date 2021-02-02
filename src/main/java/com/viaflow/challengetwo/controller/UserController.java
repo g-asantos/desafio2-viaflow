@@ -1,6 +1,8 @@
 package com.viaflow.challengetwo.controller;
 
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +31,16 @@ public class UserController {
 	@Transactional
 	public ResponseEntity<String> login(@RequestBody @Valid UserDto userDto) {
 		
-    	User user = userRepository.findByLogin(userDto.getLogin());
-    	UserDto returnUserDto = new UserDto(user);
+    	Optional<User> user = Optional.of(userRepository.findByLogin(userDto.getLogin()));
     	
     	
-    	if(user == null) {
+    	
+    	if(!user.isPresent()) {
     		return ResponseEntity.notFound().build();
-    	} else if(!userDto.getPassword().equals(user.getPassword())){
+    	} else if(!userDto.getPassword().equals(user.get().getPassword())){
     		return ResponseEntity.status(401).body("Senha incorreta");
     	}
-    	
+    	UserDto returnUserDto = new UserDto(user.get());
     	return ResponseEntity.ok().body("Login realizado! Bem-vindo " + returnUserDto.getCompleteName());
 	}
 
