@@ -30,7 +30,7 @@ public class ProductController {
     @GetMapping
     public List<ProductDto> list(){
 
-            List<Product> products = productRepository.findAllByIdAsc();
+            List<Product> products = productRepository.findAllByOrderByIdAsc();
             return ProductDto.converter(products);
     }
     
