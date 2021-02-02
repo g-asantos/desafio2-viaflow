@@ -3,10 +3,9 @@ package com.viaflow.challengetwo.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import com.viaflow.challengetwo.model.User;
-import com.viaflow.challengetwo.repository.UserRepository;
 
 public class UserDto {
 
