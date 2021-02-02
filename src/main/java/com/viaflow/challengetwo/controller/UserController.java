@@ -37,6 +37,8 @@ public class UserController {
     	
     	if(!user.isPresent()) {
     		return ResponseEntity.notFound().build();
+    	} else if(!userDto.getLogin().equals(user.get().getLogin())) {
+    		return ResponseEntity.status(401).body("Login incorreto");
     	} else if(!userDto.getPassword().equals(user.get().getPassword())){
     		return ResponseEntity.status(401).body("Senha incorreta");
     	}
