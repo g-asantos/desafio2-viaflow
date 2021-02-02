@@ -11,17 +11,29 @@ public class ProductDto {
 	private Integer rating;
     private String image;
     private String category;
+    private String description;
 
     public ProductDto(Product product) {
         this.id = product.getId();
         this.title = product.getTitle();
         this.rating = product.getRating();
         this.image = product.getImage();
+        this.description = product.getDescription();
         this.category = product.getCategory().getTitle();
     }
 
 
-    public static List<ProductDto> converter(List<Product> products) {
+    public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public static List<ProductDto> converter(List<Product> products) {
 		return products.stream().map(ProductDto::new).collect(Collectors.toList());
 	}
 
