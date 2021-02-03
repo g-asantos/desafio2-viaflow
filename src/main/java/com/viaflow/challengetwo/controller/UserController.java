@@ -31,13 +31,11 @@ public class UserController {
 	@Transactional
 	public ResponseEntity<String> login(@RequestBody @Valid UserDto userDto) {
 		
-    	Optional<User> user = Optional.of(userRepository.findByLogin(userDto.getLogin()));
+    	Optional<User> user = Optional.ofNullable(userRepository.findByLogin(userDto.getLogin()));
     	
     	
     	
-    	if(!user.isPresent()) {
-    		return ResponseEntity.notFound().build();
-    	} else if(!userDto.getLogin().equals(user.get().getLogin())) {
+    	if(!user.isPresent() || user == null) {
     		return ResponseEntity.status(401).body("Login incorreto");
     	} else if(!userDto.getPassword().equals(user.get().getPassword())){
     		return ResponseEntity.status(401).body("Senha incorreta");
